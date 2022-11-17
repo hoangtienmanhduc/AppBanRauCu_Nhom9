@@ -1,0 +1,177 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View,FlatList ,ImageBackground,Image,TouchableOpacity,TextInput} from 'react-native';
+import React, {Component,useState } from 'react';
+export default function Home() {
+    const [click,setcick] = useState()
+    const DATA = [
+        {
+          title: "Fruits",
+          
+          
+        },
+        {
+          title: "Vegatable",
+         
+        },
+        {
+          title: "Bakery",
+       
+        },
+        {
+          title: "Fast food",
+        
+        },
+      ];
+      const DATA1 = [
+        {
+          title: "Strawbery",
+          gt:"Fresh Fruits",
+          price:"4.53",
+          img:require("../../image/qua1.png")
+          
+        },
+        {
+          title: "Mango",
+          gt:"Fresh Fruits",
+          price:"3.9",
+          img:require("../../image/qua2.png")
+
+        },
+        {
+          title: "Graperfruit",
+          gt:"Fresh Fruits",
+          price:"4.53",
+          img:require("../../image/qua3.png")
+        },
+        {
+          title: "Pomegranate",
+          gt:"Fresh Fruits",
+          price:"4.53",
+          img:require("../../image/qua4.png")
+        },
+      ];
+      const Item = ({ item, click,onPress, backgroundColor, textColor,index }) => (
+        <View>
+            {click===index ? (<View><TouchableOpacity style={{height:40,width:100,justifyContent:"center",alignItems:"center",borderRadius:10}} onPress={onPress}  >
+          <Text style={{fontSize:18,fontWeight:"bold",color:"black"}}>
+            {item.title}
+          </Text>
+        </TouchableOpacity></View>):(<View>
+            <TouchableOpacity style={{height:40,width:110,justifyContent:"center",alignItems:"center",borderRadius:10}} onPress={onPress}  >
+            <Text style={{fontSize:18,color:"gray"}}>
+            {item.title}
+          </Text>
+        </TouchableOpacity>
+        </View>)}
+        
+        </View>
+      );
+      const renderItem = ({ item ,index}) => {
+        return (
+          <Item
+            item={item}
+            index={index}
+            click={click}
+            onPress={() => {
+                setcick(DATA.indexOf(item))
+             }
+             }
+            
+          />
+        );
+      };
+      const Item1 = ({ item, click,onPress, backgroundColor, textColor,index }) => (
+        <View>
+            <View style={{width:180,marginLeft:23,marginTop:20,height:260,borderWidth:1,borderColor:"gray",borderRadius:10}}>
+                <View style={{flex:0.2,justifyContent:"center",alignItems:"flex-end",paddingRight:10,paddingTop:5}}>
+                    <View style={{width:30,height:40,backgroundColor:"#EAB1B1",justifyContent:"center",alignItems:"center",borderRadius:10}}>
+                        <Image style={{width:15,height:20,justifyContent:"center",alignItems:"center"}} source={require("../../image/btn2.png")}></Image>
+                    </View>
+                </View>
+                <View style={{flex:0.8,width:"100%",height:"100%",alignItems:"center"}}>
+                    <View style={{width:"100%",alignItems:"center"}}>
+                        <Image style={{width:140,height:110,resizeMode: 'contain'}} source={item.img}></Image>
+                    </View>
+                    <View style={{width:"80%"}}>
+                    <Text style={{fontSize:20,fontWeight:"bold"}}>{item.title}</Text>
+                    <Text style={{fontSize:16,color:"gray"}}>{item.gt}</Text>
+                    <View style={{width:"100%",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+                    
+                    <Text style={{fontSize:20,fontWeight:"bold"}}>{item.price}</Text>
+                    <ImageBackground style={{width:30,height:30,justifyContent:"center",alignItems:"center"}} source={require("../../image/icon1.png")}>
+                        <Image style={{width:20,height:20,justifyContent:"center",alignItems:"center"}} source={require("../../image/btncong.png")}></Image>
+                    </ImageBackground>
+                    </View>
+                    </View>
+                </View>
+            </View>
+        
+        </View>
+      );
+      const renderItem1 = ({ item ,index}) => {
+        return (
+          <Item1
+            item={item}
+            index={index}
+            click={click}
+            // onPress={() => {
+            //        setcick(DATA.indexOf(item))
+            //     }
+            // }  
+          />
+        );
+      };
+  return (
+    <View style={styles.container}>
+        <View style={{width:"100%",height:"100%",alignItems:"center"}}>
+            <View style={{flex:0.15,width:"100%",height:"100%",alignItems:"center",justifyContent:"flex-end"}}>
+                <View style={{width:"90%",height:"100%",flexDirection:"row",alignItems:"center",justifyContent:"space-between"}}>
+                    <TouchableOpacity>
+                        <ImageBackground style={{width:50,height:50,alignItems:"center",justifyContent:"center"}} source={require("../../image/icon1.png")}>
+                            <Image style={{width:20,height:20}} source={require("../../image/icon2.png")}></Image>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                    <Text style={{fontSize:30,fontWeight:"bold"}}>Home</Text>
+                    <TouchableOpacity>
+                        <ImageBackground style={{width:50,height:50,alignItems:"center",justifyContent:"center"}} source={require("../../image/icon1.png")}>
+                            <Image style={{width:"100%",height:"100%"}} source={require("../../image/avt.png")}></Image>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <View style={{flex:0.2,width:"90%",justifyContent:"space-between"}}>
+                <Text style={{fontSize:22,fontWeight:"bold"}}>Let's find best food here</Text>
+                <View style={{width:"100%",paddingLeft:15,height:"35%",flexDirection:"row",backgroundColor:"#F2EFEF",borderRadius:10,alignItems:"center",justifyContent:"flex-start"}}>
+                    <Image style={{width:35,height:35,paddingLeft:10}} source={require("../../image/iconsearch.png")}></Image>
+                    <TextInput style={{width:"70%",height:"100%",paddingLeft:20,fontSize:20}} placeholder={"Search now"}></TextInput>
+                </View>
+                <View>
+                <FlatList 
+                    data={DATA}
+                    renderItem={renderItem} 
+                    horizontal
+                />
+                </View>
+            </View>
+            <View style={{flex:0.55,width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
+                <View style={{width:"100%",height:"100%"}}>
+                <FlatList 
+                    data={DATA1}
+                    renderItem={renderItem1} 
+                    numColumns={2}
+                />
+                </View>
+            </View>
+        </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
