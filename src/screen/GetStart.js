@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,ImageBackground,Image,TouchableOpacity} from 'react-native';
 
-export default function App() {
+export default function GetStart({navigation}) {
+
   return (
     <View style={styles.container}>
       <View style={{width:"100%",height:"100%"}}>
@@ -25,7 +26,7 @@ export default function App() {
              
             </View>
             <View  style={{flex:0.4,width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
-                <TouchableOpacity style={{width:"50%",height:"40%",backgroundColor:"#E12020",borderRadius:15,justifyContent:"center",alignItems:"center"}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Home')}} style={{width:"50%",height:"40%",backgroundColor:"#E12020",borderRadius:15,justifyContent:"center",alignItems:"center"}}>
                     <Text style={{fontSize:20,fontWeight:"bold",color:"white"}}>Let's Buy</Text>
                 </TouchableOpacity>
             </View>

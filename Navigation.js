@@ -1,13 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
-import Screen1 from './src/screen/GetStart'
+import GetStart from './src/screen/GetStart'
+import Home from './src/screen/Home'
 
 function StackNavigater() {
   return (
     <Stack.Navigator>
-        <Stack.Screen name="Screen1" options={{ headerMode: 'none' }} component={Screen1} />
-      
+        <Stack.Screen name="GetStart" options={{ headerMode: 'none' }} component={GetStart} />
+        <Stack.Screen name="Home" options={{ headerMode: 'none' }} component={Home} />
     </Stack.Navigator>
   );
 }
