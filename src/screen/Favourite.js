@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,FlatList ,ImageBackground,Image,TouchableOpacity,TextInput} from 'react-native';
 import React, {Component,useState } from 'react';
-export default function Home({navigation}) {
+export default function Favourite({navigation}) {
     const [click,setcick] = useState()
     const DATA = [
         {
@@ -82,27 +82,27 @@ export default function Home({navigation}) {
       };
       const Item1 = ({ item, click,onPress, backgroundColor, textColor,index }) => (
         <View>
-            <View style={{width:180,marginLeft:23,marginTop:20,height:260,borderWidth:1,borderColor:"gray",borderRadius:10}}>
-                <View style={{flex:0.2,justifyContent:"center",alignItems:"flex-end",paddingRight:10,paddingTop:5}}>
-                    <View style={{width:30,height:40,backgroundColor:"#EAB1B1",justifyContent:"center",alignItems:"center",borderRadius:10}}>
-                        <Image style={{width:15,height:20,justifyContent:"center",alignItems:"center"}} source={require("../../image/btn2.png")}></Image>
+            <View style={{width:"90%",marginLeft:23,marginTop:30,height:130,borderWidth:1,borderColor:"gray",borderRadius:15,flexDirection:"row"}}>
+                <View style={{flex:0.4,width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
+                <Image style={{width:120,height:90,resizeMode: 'contain'}} source={item.img}></Image>
+                </View>
+                <View style={{flex:0.5,width:"100%",height:"100%",alignItems:"center",justifyContent:'center'}}>
+                    <View style={{width:"90%",height:"100%",justifyContent:'space-between',paddingTop:15,paddingBottom:15}}>
+                        <Text style={{fontSize:22,fontWeight:"bold"}}>{item.title}</Text>
+                        <Text style={{fontSize:18,color:"gray"}}>{item.gt}</Text>
+                        <Text style={{fontSize:25,fontWeight:"bold"}}>${item.price}</Text>
                     </View>
                 </View>
-                <View style={{flex:0.8,width:"100%",height:"100%",alignItems:"center"}}>
-                    <View style={{width:"100%",alignItems:"center"}}>
-                        <Image style={{width:140,height:110,resizeMode: 'contain'}} source={item.img}></Image>
-                    </View>
-                    <View style={{width:"80%"}}>
-                    <Text style={{fontSize:20,fontWeight:"bold"}}>{item.title}</Text>
-                    <Text style={{fontSize:16,color:"gray"}}>{item.gt}</Text>
-                    <View style={{width:"100%",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
-                    
-                    <Text style={{fontSize:20,fontWeight:"bold"}}>{item.price}</Text>
+                <View style={{flex:0.1,alignItems:"center",justifyContent:"space-between",paddingTop:5,paddingBottom:15}}>
+                <TouchableOpacity>
+                <Image style={{width:20,height:20,resizeMode: 'contain'}} source={require("../../image/daux.png")}></Image>
+                </TouchableOpacity>
+               <TouchableOpacity>
                     <ImageBackground style={{width:30,height:30,justifyContent:"center",alignItems:"center"}} source={require("../../image/icon1.png")}>
                         <Image style={{width:20,height:20,justifyContent:"center",alignItems:"center"}} source={require("../../image/btncong.png")}></Image>
                     </ImageBackground>
-                    </View>
-                    </View>
+               </TouchableOpacity>
+               
                 </View>
             </View>
         
@@ -131,7 +131,7 @@ export default function Home({navigation}) {
                             <Image style={{width:20,height:20}} source={require("../../image/icon2.png")}></Image>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <Text style={{fontSize:30,fontWeight:"bold"}}>Home</Text>
+                    <Text style={{fontSize:30,fontWeight:"bold"}}>Favourite</Text>
                     <TouchableOpacity>
                         <ImageBackground style={{width:50,height:50,alignItems:"center",justifyContent:"center"}} source={require("../../image/icon1.png")}>
                             <Image style={{width:"100%",height:"100%"}} source={require("../../image/avt.png")}></Image>
@@ -139,32 +139,28 @@ export default function Home({navigation}) {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={{flex:0.2,width:"90%",justifyContent:"space-between"}}>
-                <Text style={{fontSize:22,fontWeight:"bold"}}>Let's find best food here</Text>
-                <View style={{width:"100%",paddingLeft:15,height:"35%",flexDirection:"row",backgroundColor:"#F2EFEF",borderRadius:10,alignItems:"center",justifyContent:"flex-start"}}>
+            <View style={{flex:0.085,width:"90%",justifyContent:"space-between"}}>
+                
+                <View style={{width:"100%",paddingLeft:15,height:"80%",flexDirection:"row",backgroundColor:"#F2EFEF",borderRadius:10,alignItems:"center",justifyContent:"flex-start"}}>
                     <Image style={{width:35,height:35,paddingLeft:10}} source={require("../../image/iconsearch.png")}></Image>
-                    <TextInput style={{width:"70%",height:"100%",paddingLeft:20,fontSize:20}} placeholder={"Search now"}></TextInput>
+                    <TextInput style={{width:"70%",height:"100%",paddingLeft:20,fontSize:20}} placeholder={"Search favourate now"}></TextInput>
                 </View>
                 <View>
-                <FlatList 
-                    data={DATA}
-                    renderItem={renderItem} 
-                    horizontal
-                />
+                
                 </View>
             </View>
-            <View style={{flex:0.55,width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
+            <View style={{flex:0.665,width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
                 <View style={{width:"100%",height:"100%"}}>
                 <FlatList 
                     data={DATA1}
                     renderItem={renderItem1} 
-                    numColumns={2}
+                    
                 />
                 </View>
             </View>
             <View style={{flex:0.1,width:"100%",height:"100%",justifyContent:"flex-end"}}>
               <View style={{width:"100%",height:"70%",backgroundColor:"#EAB1B1",alignItems:"center",flexDirection:"row",justifyContent:"space-between",padding:15}}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
                 <Image style={{width:30,height:30}} source={require("../../image/iconhome.png")}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>navigation.navigate("Favourite")}>
