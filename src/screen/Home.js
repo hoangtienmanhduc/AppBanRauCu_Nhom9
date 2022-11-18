@@ -27,27 +27,31 @@ export default function Home({navigation}) {
           title: "Strawbery",
           gt:"Fresh Fruits",
           price:"4.53",
-          img:require("../../image/qua1.png")
+          img:require("../../image/qua1.png"),
+          star:4.8
           
         },
         {
           title: "Mango",
           gt:"Fresh Fruits",
           price:"3.9",
-          img:require("../../image/qua2.png")
+          img:require("../../image/qua2.png"),
+          star:4.0
 
         },
         {
           title: "Graperfruit",
           gt:"Fresh Fruits",
           price:"4.53",
-          img:require("../../image/qua3.png")
+          img:require("../../image/qua3.png"),
+          star:3.8
         },
         {
           title: "Pomegranate",
           gt:"Fresh Fruits",
           price:"4.53",
-          img:require("../../image/qua4.png")
+          img:require("../../image/qua4.png"),
+          star:2.5
         },
       ];
       const Item = ({ item, click,onPress, backgroundColor, textColor,index }) => (
@@ -82,6 +86,7 @@ export default function Home({navigation}) {
       };
       const Item1 = ({ item, click,onPress, backgroundColor, textColor,index }) => (
         <View>
+          <TouchableOpacity onPress={()=>navigation.navigate("Detail",{item})}>
             <View style={{width:180,marginLeft:23,marginTop:20,height:260,borderWidth:1,borderColor:"gray",borderRadius:10}}>
                 <View style={{flex:0.2,justifyContent:"center",alignItems:"flex-end",paddingRight:10,paddingTop:5}}>
                     <View style={{width:30,height:40,backgroundColor:"#EAB1B1",justifyContent:"center",alignItems:"center",borderRadius:10}}>
@@ -105,7 +110,7 @@ export default function Home({navigation}) {
                     </View>
                 </View>
             </View>
-        
+            </TouchableOpacity>
         </View>
       );
       const renderItem1 = ({ item ,index}) => {
