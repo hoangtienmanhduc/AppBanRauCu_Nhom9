@@ -1,13 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 import GetStart from './src/screen/GetStart'
 import Home from './src/screen/Home'
 import Favourite from './src/screen/Favourite'
 import Detail from './src/screen/Detail'
-import Profile from './src/screen/Profile'
-
-
 
 
 function StackNavigater() {
@@ -17,18 +14,15 @@ function StackNavigater() {
         <Stack.Screen name="Home" options={{ headerMode: 'none' }} component={Home} />
         <Stack.Screen name="Favourite" options={{ headerMode: 'none' }} component={Favourite} />
         <Stack.Screen name="Detail" options={{ headerMode: 'none' }} component={Detail} />
-        <Stack.Screen name="Profile" options={{ headerMode: 'none' }} component={Profile} />
     </Stack.Navigator>
   );
 }
-const Main = ()=>{
-  return(
-    <NavigationContainer>
-      <StackNavigater>
-
-      </StackNavigater>
-    </NavigationContainer>
-  )
-}
+const Main = () => {
+    return (
+        <NavigationContainer>
+            <StackNavigater></StackNavigater>
+        </NavigationContainer>
+    );
+};
 
 export default Main;
