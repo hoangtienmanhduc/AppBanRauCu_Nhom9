@@ -23,11 +23,10 @@ export default function GetStart({navigation}) {
                     <Text style={{fontSize:18,color:"gray"}}>The easiest way to shate your family's</Text>
                     <Text style={{fontSize:18,color:"gray"}}>grocery shopping - Try it out</Text>
                 </View>
-             
             </View>
             <View  style={{flex:0.4,width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
-                <TouchableOpacity onPress={()=>{navigation.navigate('Home')}} style={{width:"50%",height:"40%",backgroundColor:"#E12020",borderRadius:15,justifyContent:"center",alignItems:"center"}}>
-                    <Text style={{fontSize:20,fontWeight:"bold",color:"white"}}>Let's Buy</Text>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Login')}} style={{width:"50%",height:"40%",backgroundColor:"#E12020",borderRadius:15,justifyContent:"center",alignItems:"center"}}>
+                    <Text style={{fontSize:20,fontWeight:"bold",color:"white"}}>Login</Text>
                 </TouchableOpacity>
             </View>
         </View>
