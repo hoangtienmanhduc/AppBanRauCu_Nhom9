@@ -8,9 +8,8 @@ import Detail from './src/screen/Detail'
 import Login from './src/screen/Login'
 import Register from './src/screen/Register'
 import Profile from './src/screen/Profile'
-
-
-
+import OrderDetail from './src/screen/OrderDetail'
+import Cart from './src/screen/Cart'
 
 function StackNavigater() {
   return (
@@ -22,6 +21,8 @@ function StackNavigater() {
         <Stack.Screen name="Login" options={{ headerMode: 'none' }} component={Login} />
         <Stack.Screen name="Register" options={{ headerMode: 'none' }} component={Register} />
         <Stack.Screen name="Profile" options={{ headerMode: 'none' }} component={Profile} />
+        <Stack.Screen name="OrderDetail" options={{ headerMode: 'none' }} component={OrderDetail} />
+        <Stack.Screen name="Cart" options={{ headerMode: 'none' }} component={Cart} />
     </Stack.Navigator>
   );
 }

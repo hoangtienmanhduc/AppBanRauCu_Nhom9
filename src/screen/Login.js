@@ -18,7 +18,6 @@ export default function Login({ navigation }) {
                     height: "40%",
                     width: "80%",
                     marginLeft: "10%",
-
                     marginTop: 20,
                 }}
             >
@@ -30,15 +29,14 @@ export default function Login({ navigation }) {
             <View
                 style={{
                     height: "60%",
-                    width: "80%",
-                    marginLeft: "10%",
-
+                    width: "87%",
+                    marginLeft: 25,
                     marginTop: 10,
                 }}
             >
-                <Text style={{ fontSize: 30, fontWeight: "bold" }}>Login</Text>
+                <Text style={{ fontSize: 30, fontWeight: "bold",marginLeft:15 }}>Log In</Text>
                 <Text
-                    style={{ fontSize: 20, fontWeight: "bold", marginTop: 30 }}
+                    style={{ fontSize: 18, fontWeight: "bold", marginTop: 30,marginLeft:15 }}
                 >
                     Email
                 </Text>
@@ -46,15 +44,15 @@ export default function Login({ navigation }) {
                     style={{
                         height: "10%",
                         borderWidth: 1,
-                        borderRadius: 15,
+                        borderRadius: 20,
                         flexDirection: "row",
                         alignItems: "center",
                         marginTop: 5,
                     }}
                 >
                     <Image
-                        style={{ marginLeft: 10, height: 35, width: 35 }}
-                        source={require("../../image/email-pngrepo-com.png")}
+                        style={{ marginLeft: 10, height: 20, width: 20 }}
+                        source={require("../../image/email.png")}
                     ></Image>
                     <TextInput
                         placeholder="Type your email"
@@ -62,13 +60,13 @@ export default function Login({ navigation }) {
                             height: "100%",
                             width: 270,
                             marginLeft: 10,
+                            fontSize:15
                         }}
                     >
-                        <Text>a</Text>
                     </TextInput>
                 </View>
                 <Text
-                    style={{ fontSize: 20, fontWeight: "bold", marginTop: 30 }}
+                    style={{ fontSize: 18, fontWeight: "bold", marginTop: 30,marginLeft:15 }}
                 >
                     Password
                 </Text>
@@ -76,15 +74,16 @@ export default function Login({ navigation }) {
                     style={{
                         height: "10%",
                         borderWidth: 1,
-                        borderRadius: 15,
+                        borderRadius: 20,
                         flexDirection: "row",
                         alignItems: "center",
                         marginTop: 5,
+                        width:"100%",
                     }}
                 >
                     <Image
-                        style={{ marginLeft: 10, height: 35, width: 35 }}
-                        source={require("../../image/password-pngrepo-com.png")}
+                        style={{ marginLeft: 10, height: 23, width: 15 }}
+                        source={require("../../image/password.png")}
                     ></Image>
                     <TextInput
                         placeholder="Type your password"
@@ -94,9 +93,9 @@ export default function Login({ navigation }) {
                             width: 225,
                             marginLeft: 10,
                             paddingRight: 10,
+                            fontSize:15
                         }}
                     >
-                        <Text>a</Text>
                     </TextInput>
                     <TouchableOpacity
                         onPress={() => {
@@ -105,7 +104,7 @@ export default function Login({ navigation }) {
                         }}
                     >
                         <Image
-                            style={{ height: 25, width: 25 }}
+                            style={{ height: 25, width: 25,marginLeft:35 }}
                             source={
                                 visiblepass
                                     ? require("../../image/visible-eye-pngrepo-com.png")
@@ -126,12 +125,13 @@ export default function Login({ navigation }) {
                         alignItems: "center",
                         marginTop: 30,
                     }}
+                    onPress={() => navigation.navigate("Home")}
                 >
                     <Text
                         style={{
                             color: "#FFFFFF",
                             fontWeight: "bold",
-                            fontSize: 15,
+                            fontSize: 17,
                         }}
                     >
                         Log In
@@ -140,14 +140,15 @@ export default function Login({ navigation }) {
                 <View
                     style={{
                         height: "10%",
-
                         marginTop: 20,
                         flexDirection: "row",
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                 >
                     <Text
                         style={{
-                            fontSize: 15,
+                            fontSize: 16,
                             color: "#000000",
                             marginLeft: 20,
                         }}
@@ -161,7 +162,7 @@ export default function Login({ navigation }) {
                     >
                         <Text
                             style={{
-                                fontSize: 15,
+                                fontSize: 16,
                                 fontWeight: "bold",
                                 marginLeft: 60,
                             }}

@@ -161,8 +161,8 @@ export default function Home({ navigation }) {
             />
           </View>
         </View>
-        <View style={{ flex: 0.1, width: "100%", height: "100%", justifyContent: "flex-end" }}>
-          <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15 }}>
+        <View style={{ flex: 0.1, width: "100%", height: "100%", justifyContent: "flex-end"}}>
+          <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15,borderTopLeftRadius:25,borderTopRightRadius:25 }}>
             <TouchableOpacity>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/iconhome.png")}></Image>
             </TouchableOpacity>
