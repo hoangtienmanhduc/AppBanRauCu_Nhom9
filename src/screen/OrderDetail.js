@@ -119,8 +119,8 @@ export default function OrderDetail({ navigation }) {
                 <Text style={{fontWeight:'bold'}}>$30.50</Text>
             </View>
             <View style={{ width: 400, height: 85, justifyContent: "flex-end"}}>
-                <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15 }}>
-                    <TouchableOpacity>
+                <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                         <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
@@ -129,7 +129,7 @@ export default function OrderDetail({ navigation }) {
                     <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
                         <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohang.png")}></Image>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("OrderDetail")}>
                         <Image style={{ width: 30, height: 30 }} source={require("../../image/chuongred.png")}></Image>
                     </TouchableOpacity>
                 </View>

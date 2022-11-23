@@ -33,7 +33,7 @@ export default function Cart({ navigation }) {
 
     const Item1 = ({ item, click, onPress, backgroundColor, textColor, index }) => (
         <View>
-            <ImageBackground style={{ width: 350, marginLeft: 20, marginTop: 25, height: 130, flexDirection: 'row' }} source={require("../../image/border2.png")}>
+            <ImageBackground style={{ width: 350, marginLeft: 20, marginTop: 10, height: 130, flexDirection: 'row' }} source={require("../../image/border2.png")}>
                 <View style={{ flex: 0.4, width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
                     <Image style={{ width: 120, height: 90, resizeMode: 'contain' }} source={item.img}></Image>
                 </View>
@@ -79,7 +79,7 @@ export default function Cart({ navigation }) {
                     </ImageBackground>
                 </TouchableOpacity>
             </View>
-            <View style={{ width: 400, height: 175, justifyContent: "center", alignItems: "center", marginTop: 20, }}>
+            <View style={{ width: 400, height: 285, justifyContent: "center", alignItems: "center", marginTop: 10}}>
                 <View style={{ width: "100%", height: "100%" }}>
                     <FlatList
                         data={DATA1}
@@ -87,50 +87,50 @@ export default function Cart({ navigation }) {
                     />
                 </View>
             </View>
-            <View style={{ marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
-                <ImageBackground style={{ width: 350, height: 260 }} source={require("../../image/bordercart.png")}>
+            <View style={{ marginTop: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <ImageBackground style={{ width: 350, height: 230 }} source={require("../../image/bordercart.png")}>
                     <Text style={{ fontWeight: 'bold', fontSize: 20, marginLeft: 20, marginTop: 12 }}>Order Infor</Text>
                     <View style={{ marginLeft: 20, marginTop: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#AAA8A8' }}>Subtotal</Text>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$45.75</Text>
                     </View>
-                    <View style={{ marginLeft: 20, marginTop: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#AAA8A8' }}>Delevery fee</Text>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$10</Text>
                     </View>
-                    <View style={{ marginLeft: 20, marginTop: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#AAA8A8' }}>Discount</Text>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>10%</Text>
                     </View>
-                    <View style={{ marginLeft: 20, marginTop: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#AAA8A8' }}>---------------------------------------------</Text>
                     </View>
-                    <View style={{ marginLeft: 20, marginTop: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Total</Text>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$50.175</Text>
                     </View>
                 </ImageBackground>
             </View>
-            <View style={{ justifyContent: "center", alignItems: "center", marginTop: 30 }}>
+            <View style={{ justifyContent: "center", alignItems: "center", marginTop: 20 }}>
                 <TouchableOpacity onPress={() => { navigation.navigate('Home') }} style={{ width: 250, height: 50, backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>Checkout</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{width:400,height:85 ,justifyContent: "flex-end",marginTop:15 }}>
-                <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15 }}>
-                    <TouchableOpacity>
-                        <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
-                        <Image style={{ width: 17, height: 28}} source={require("../../image/btn3.png")}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
-                        <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohangred.png")}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image style={{ width: 30, height: 30 }} source={require("../../image/iconchuong.png")}></Image>
-                    </TouchableOpacity>
-                </View>
+            <View style={{width:400,height:75 ,justifyContent: "flex-end" }}>
+            <View style={{ width: 392, height: 55, backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
+            <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+              <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
+              <Image style={{ width: 17, height: 28 }} source={require("../../image/btn3.png")}></Image>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+              <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohangred.png")}></Image>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail")}>
+              <Image style={{ width: 30, height: 30 }} source={require("../../image/iconchuong.png")}></Image>
+            </TouchableOpacity>
+          </View>
             </View>
         </View>
     );

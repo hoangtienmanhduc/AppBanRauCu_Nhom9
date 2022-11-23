@@ -6,7 +6,7 @@ export default function Profail({ navigation }) {
         <View style={styles.container}>
             <View style={{ justifyContent: "flex-end" }}>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 30 }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                         <ImageBackground style={{ width: 50, height: 50, alignItems: "center", justifyContent: "center", marginLeft: 20 }} source={require("../../image/icon1.png")}>
                             <Image style={{ width: 15, height: 25 }} source={require("../../image/btnback.png")}></Image>
                         </ImageBackground>
@@ -74,7 +74,7 @@ export default function Profail({ navigation }) {
                 <Image style={{ width: 14, height: 26, marginTop: 23,marginLeft:105 }} source={require("../../image/btnchuyen_pf.png")}></Image>
             </TouchableOpacity>
             <View  style={{justifyContent:"center",alignItems:"center",marginTop:10}}>
-                <TouchableOpacity onPress={()=>{navigation.navigate('Home')}} style={{width:250,height:50,backgroundColor:"#E12020",borderRadius:15,justifyContent:"center",alignItems:"center"}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Login')}} style={{width:250,height:50,backgroundColor:"#E12020",borderRadius:15,justifyContent:"center",alignItems:"center"}}>
                     <Text style={{fontSize:20,fontWeight:"bold",color:"white"}}>Log Out</Text>
                 </TouchableOpacity>
             </View>

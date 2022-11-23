@@ -11,6 +11,7 @@ import Profile from './src/screen/Profile'
 import OrderDetail from './src/screen/OrderDetail'
 import Cart from './src/screen/Cart'
 
+
 function StackNavigater() {
   return (
     <Stack.Navigator>

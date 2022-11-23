@@ -214,6 +214,9 @@ export default function Register({ navigation }) {
                         marginTop: 20,
                         marginTop:35
                     }}
+                    onPress={() => {
+                        navigation.navigate("slideshow");
+                    }}
                 >
                     <Text
                         style={{

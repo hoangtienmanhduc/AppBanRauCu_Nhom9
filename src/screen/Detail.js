@@ -11,7 +11,7 @@ export default function Detail({ navigation, route }) {
                 <View style={{ flex: 0.6 }}>
                     <ImageBackground style={{ width: "100%", height: "100%" }} source={require("../../image/backgroundstart.png")}>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 25 }}>
-                            <TouchableOpacity style={{ marginLeft: 25 }}>
+                            <TouchableOpacity style={{ marginLeft: 25 }}  onPress={() => { navigation.navigate('Home') }}>
                                 <ImageBackground style={{ width: 45, height: 45, alignItems: "center", justifyContent: "center" }} source={require("../../image/icon1.png")}>
                                     <Image style={{ width: 12, height: 22 }} source={require("../../image/btnback.png")}></Image>
                                 </ImageBackground>
@@ -109,7 +109,7 @@ export default function Detail({ navigation, route }) {
 
                     </View>
                     <View style={{ flex: 0.22, width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
-                        <TouchableOpacity onPress={() => { navigation.navigate('Home') }} style={{ width: "60%", height: "75%", backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
+                        <TouchableOpacity onPress={() => { navigation.navigate('Cart') }} style={{ width: "60%", height: "75%", backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
                             <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>Add To Cart</Text>
                         </TouchableOpacity>
                     </View>
