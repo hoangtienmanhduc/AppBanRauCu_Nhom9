@@ -16,7 +16,7 @@ export default function Detail({ navigation, route }) {
                                     <Image style={{ width: 12, height: 22 }} source={require("../../image/btnback.png")}></Image>
                                 </ImageBackground>
                             </TouchableOpacity>
-                            <Text style={{ fontSize: 28, fontWeight: "bold", marginRight: 105 }}>Order Details</Text>
+                            <Text style={{ fontSize: 28, fontWeight: "bold", marginRight: 150 }}>Details</Text>
                         </View>
                         <View style={{alignItems:'center',marginTop:25}}>
                             <Image style={{ width: 340, height: 300, resizeMode: 'contain'}} source={item.img}></Image>

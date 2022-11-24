@@ -67,7 +67,7 @@ export default function OrderDetail({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                <TouchableOpacity style={{ marginLeft: 25 }}>
+                <TouchableOpacity style={{ marginLeft: 25 }} onPress={() => { navigation.navigate('Home') }}>
                     <ImageBackground style={{ width: 45, height: 45, alignItems: "center", justifyContent: "center" }} source={require("../../image/icon1.png")}>
                         <Image style={{ width: 12, height: 22 }} source={require("../../image/btnback.png")}></Image>
                     </ImageBackground>
@@ -111,15 +111,19 @@ export default function OrderDetail({ navigation }) {
                 <Text style={{fontWeight:'bold'}}>$30.50</Text>
             </View>
             <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
-                <Text style={{fontWeight:'bold'}}>Delivery</Text>
-                <Text style={{fontWeight:'bold'}}>Free</Text>
+                <Text style={{fontWeight:'bold'}}>Delivery fee</Text>
+                <Text style={{fontWeight:'bold'}}>$5.00</Text>
+            </View>
+            <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
+                <Text style={{fontWeight:'bold'}}>Discount</Text>
+                <Text style={{fontWeight:'bold'}}>10%</Text>
             </View>
             <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
                 <Text style={{fontWeight:'bold'}}>Total</Text>
                 <Text style={{fontWeight:'bold'}}>$30.50</Text>
             </View>
-            <View style={{ width: 400, height: 85, justifyContent: "flex-end"}}>
-                <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
+            <View style={{ width: 400, height: 60, justifyContent: "flex-end"}}>
+                <View style={{ width: "100%", height: "90%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
                     <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                         <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
                     </TouchableOpacity>

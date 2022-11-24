@@ -1,37 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
-import React, { Component, useState } from 'react';
-export default function Favourite({ navigation }) {
+import React, { Component, useEffect, useState } from 'react';
+export default function Favourite({ navigation,route }) {
   const [click, setcick] = useState()
-  const DATA1 = [
-    {
-      title: "Strawbery",
-      gt: "Fresh Fruits",
-      price: "4.53",
-      img: require("../../image/qua1.png")
-
-    },
-    {
-      title: "Mango",
-      gt: "Fresh Fruits",
-      price: "3.9",
-      img: require("../../image/qua2.png")
-
-    },
-    {
-      title: "Graperfruit",
-      gt: "Fresh Fruits",
-      price: "4.53",
-      img: require("../../image/qua3.png")
-    },
-    {
-      title: "Pomegranate",
-      gt: "Fresh Fruits",
-      price: "4.53",
-      img: require("../../image/qua4.png")
-    },
-  ];
-
+  const [data, setData] = useState([])
+  useEffect(() => {
+    setData(route.params.data)
+  },[])
+  const xoa = (e) => {
+    const dataTam2 = [...data]
+    console.log(dataTam2);
+    const name = []
+    if (dataTam2.length > 0) {
+      dataTam2.forEach(element => {
+        name.push(element.title)
+      });
+    }
+      dataTam2.splice(name.indexOf(e.title),1)
+      console.log(dataTam2);
+      setData(dataTam2)
+  }
+  
   const Item1 = ({ item, click, onPress, backgroundColor, textColor, index }) => (
     <View>
       <ImageBackground style={{ width: 350, marginLeft: 20, marginTop: 25, height: 130, flexDirection: 'row' }} source={require("../../image/border2.png")}>
@@ -42,11 +31,11 @@ export default function Favourite({ navigation }) {
           <View style={{ width: "100%", height: "100%", justifyContent: 'space-between', paddingTop: 15, paddingBottom: 15 }}>
             <Text style={{ fontSize: 22, fontWeight: "bold" }}>{item.title}</Text>
             <Text style={{ fontSize: 18, color: "gray", fontStyle: 'italic' }}>{item.gt}</Text>
-            <Text style={{ fontSize: 25, fontWeight: "bold", color:'#32cd32' }}>${item.price}</Text>
+            <Text style={{ fontSize: 22, fontWeight: "bold", color:'#32cd32' }}>${item.price}</Text>
           </View>
         </View>
         <View style={{ flex: 0.15, alignItems: "center", justifyContent: "space-between", paddingTop: 10, paddingBottom: 15 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => { xoa(item) }}>
             <Image style={{ width: 20, height: 20, resizeMode: 'contain' }} source={require("../../image/daux.png")}></Image>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
@@ -102,7 +91,7 @@ export default function Favourite({ navigation }) {
         <View style={{ flex: 0.665, width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
           <View style={{ width: "100%", height: "100%" }}>
             <FlatList
-              data={DATA1}
+              data={data}
               renderItem={renderItem1}
 
             />
@@ -110,7 +99,7 @@ export default function Favourite({ navigation }) {
         </View>
         <View style={{ flex: 0.1, width: "100%", height: "100%", justifyContent: "flex-end" }}>
           <View style={{ width: "100%", height: "70%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
-            <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Home",{data})}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>

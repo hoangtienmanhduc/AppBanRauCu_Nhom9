@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, Dimensions, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import ViewSlider from 'react-native-view-slider'
 const { width, height } = Dimensions.get('window');
-export default function Home({ navigation }) {
+export default function Home({ navigation,route }) {
   const [click, setcick] = useState()
+  const [data, setData] = useState([])
+  const [datagiohang, setDatagiohang] = useState([])
+  const [data11, setData11] = useState([])
+  
   const DATA = [
     {
       title: "Fruits",
@@ -17,17 +21,22 @@ export default function Home({ navigation }) {
     {
       title: "Strawbery",
       gt: "Fresh Fruits",
-      price: "4.53",
+      price: "4.00",
       img: require("../../image/qua1.png"),
-      star: 4.8
+      star: 4.8,
+      kg:1,
+      soluong:2,
+      
 
     },
     {
       title: "Mango",
       gt: "Fresh Fruits",
-      price: "3.9",
+      price: "3.0",
       img: require("../../image/qua2.png"),
-      star: 4.0
+      star: 4.0,
+      kg:1,
+      soluong:2,
 
     },
     {
@@ -35,16 +44,133 @@ export default function Home({ navigation }) {
       gt: "Fresh Fruits",
       price: "4.53",
       img: require("../../image/qua3.png"),
-      star: 3.8
+      star: 3.8,
+      kg:1,
+      soluong:2,
     },
     {
       title: "Pomegranate",
       gt: "Fresh Fruits",
       price: "4.53",
       img: require("../../image/qua4.png"),
-      star: 2.5
+      star: 2.5,
+      kg:1,
+      soluong:2,
+
     },
   ];
+  const DATA2 = [
+    {
+      title: "Duc",
+      gt: "Fresh Fruits",
+      price: "4.53",
+      img: require("../../image/qua1.png"),
+      star: 4.8,
+      kg:1
+
+    },
+    {
+      title: "Duc",
+      gt: "Fresh Fruits",
+      price: "3.9",
+      img: require("../../image/qua2.png"),
+      star: 4.0,
+      kg:1
+
+    },
+    {
+      title: "Duc",
+      gt: "Fresh Fruits",
+      price: "4.53",
+      img: require("../../image/qua3.png"),
+      star: 3.8,
+      kg:1
+    },
+    {
+      title: "Duc",
+      gt: "Fresh Fruits",
+      price: "4.53",
+      img: require("../../image/qua4.png"),
+      star: 2.5,
+      kg:1
+
+    },
+  ];
+  const DATA3 = [
+    {
+      title: "Thang",
+      gt: "Fresh Fruits",
+      price: "4.53",
+      img: require("../../image/qua1.png"),
+      star: 4.8,
+      kg:1
+
+    },
+    {
+      title: "Thang",
+      gt: "Fresh Fruits",
+      price: "3.9",
+      img: require("../../image/qua2.png"),
+      star: 4.0,
+      kg:1
+
+    },
+    {
+      title: "Thang",
+      gt: "Fresh Fruits",
+      price: "4.53",
+      img: require("../../image/qua3.png"),
+      star: 3.8,
+      kg:1
+    },
+    {
+      title: "Thang",
+      gt: "Fresh Fruits",
+      price: "4.53",
+      img: require("../../image/qua4.png"),
+      star: 2.5,
+      kg:1
+
+    },
+  ];
+  useEffect(()=>{
+    setData11(DATA1)
+    if(route.params){
+      if(route.params.data)
+      {setData(route.params.data)}
+      if(route.params.datacart)
+      {setDatagiohang(route.params.datacart)}
+    }
+  },[route.params])
+  const luutru = (e) => {
+    const dataTam = [...data]
+    const name = []
+    if (dataTam.length > 0) {
+      dataTam.forEach(element => {
+        name.push(element.title)
+      });
+    }
+
+    if (name.indexOf(e.title) === -1) {
+      dataTam.push(e)
+      setData(dataTam)
+    }
+  }
+  const giohang = (e) => {
+    const dataTam2 = [...datagiohang]
+    
+    const name = []
+    if (dataTam2.length > 0) {
+      dataTam2.forEach(element => {
+        name.push(element.title)
+      });
+    }
+
+    if (name.indexOf(e.title) === -1) {
+      dataTam2.push(e)
+      setDatagiohang(dataTam2)
+    }
+  }
   const Item = ({ item, click, onPress, backgroundColor, textColor, index }) => (
     <View>
       {click === index ? (<View><TouchableOpacity style={{ justifyContent: 'space-between', marginLeft: 70, alignItems: 'center' }} onPress={onPress}  >
@@ -69,6 +195,12 @@ export default function Home({ navigation }) {
         click={click}
         onPress={() => {
           setcick(DATA.indexOf(item))
+          if(item.title==="Fruits"){
+            setData11(DATA2)
+          }
+          else{
+            setData11(DATA3)
+          }
         }
         }
 
@@ -79,7 +211,7 @@ export default function Home({ navigation }) {
     <View>
       <View>
         <ImageBackground style={{ width: 170, marginLeft: 18, marginTop: 20, height: 240, justifyContent: 'center' }} source={require("../../image/border1.png")}>
-          <TouchableOpacity style={{ flex: 0.2, justifyContent: "center", alignItems: "flex-end", paddingRight: 10, paddingTop: 5 }}>
+          <TouchableOpacity style={{ flex: 0.2, justifyContent: "center", alignItems: "flex-end", paddingRight: 10, paddingTop: 5 }} onPress={() => { luutru(item) }}>
             <View style={{ width: 30, height: 35, backgroundColor: "#EAB1B1", justifyContent: "center", alignItems: "center", borderRadius: 10 }}>
               <Image style={{ width: 15, height: 20, justifyContent: "center", alignItems: "center" }} source={require("../../image/btn2.png")}></Image>
             </View>
@@ -93,7 +225,7 @@ export default function Home({ navigation }) {
               <Text style={{ fontSize: 16, color: "gray", fontStyle: 'italic' }}>{item.gt}</Text>
               <View style={{ width: "100%", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <Text style={{ fontSize: 20, fontWeight: "bold", color: '#32cd32' }}>${item.price}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+                <TouchableOpacity onPress={() => { giohang(item) }}>
                   <ImageBackground style={{ width: 30, height: 30, justifyContent: "center", alignItems: "center" }} source={require("../../image/icon1_1.png")}>
                     <Image style={{ width: 13, height: 20, justifyContent: "center", alignItems: "center" }} source={require("../../image/btngiohang.png")}></Image>
                   </ImageBackground>
@@ -137,7 +269,7 @@ export default function Home({ navigation }) {
           </View>
         </View>
         <View style={{ flex: 0.34, height: "50%", width: "100%", justifyContent: "space-between" }}>
-          <View>
+          {/* <View>
             <>
               <ViewSlider
                 renderSlides={
@@ -167,7 +299,7 @@ export default function Home({ navigation }) {
                 slideInterval={5000}    //In Miliseconds
               />
             </>
-          </View>
+          </View> */}
           <View style={{ alignItems: 'center' }}>
             <FlatList
               data={DATA}
@@ -179,7 +311,7 @@ export default function Home({ navigation }) {
         <View style={{ flex: 0.55, width: "100%", height: "100%", justifyContent: "center", alignItems: "center", marginTop: 5 }}>
           <View style={{ width: "100%", height: "100%" }}>
             <FlatList
-              data={DATA1}
+              data={data11}
               renderItem={renderItem1}
               numColumns={2}
             />
@@ -190,10 +322,10 @@ export default function Home({ navigation }) {
             <TouchableOpacity>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/iconhome.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
+            <TouchableOpacity onPress={() => {const dataTam1=[...data];setData([]);navigation.navigate("Favourite", { data:dataTam1 })}}>
               <Image style={{ width: 17, height: 28 }} source={require("../../image/btn3.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Cart",{datagiohang})}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohang.png")}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("OrderDetail")}>
