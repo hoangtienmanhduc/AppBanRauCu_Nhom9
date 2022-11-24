@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, Dimensions, ImageBackground, Image, T
 import React, { Component, useEffect, useState } from 'react';
 import ViewSlider from 'react-native-view-slider'
 const { width, height } = Dimensions.get('window');
+import localStorage from 'react-native-sync-localstorage'
 export default function Home({ navigation, route }) {
   const [click, setcick] = useState()
   const [data, setData] = useState([])
@@ -26,8 +27,6 @@ export default function Home({ navigation, route }) {
       star: 4.8,
       kg: 1,
       soluong: 1,
-
-
     },
     {
       title: "Mango",
@@ -38,6 +37,24 @@ export default function Home({ navigation, route }) {
       kg: 1,
       soluong: 1,
 
+    },
+    {
+      title: "Carrot",
+      gt: "Vegetable",
+      price: "5.80",
+      img: require("../../image/rau1.png"),
+      star: 4.8,
+      kg: 1,
+      soluong: 1,
+    },
+    {
+      title: "Cabbage",
+      gt: "Vegetable",
+      price: "5.50",
+      img: require("../../image/rau2.png"),
+      star: 4.0,
+      kg: 1,
+      soluong: 1,
     },
     {
       title: "Graperfruit",
@@ -57,29 +74,15 @@ export default function Home({ navigation, route }) {
       kg: 1,
       soluong: 1,
     },
-    {
-      title: "Carrot",
-      gt: "Vegetable",
-      price: "5.80",
-      img: require("../../image/rau1.png"),
-      star: 4.8,
-      kg: 1
-    },
-    {
-      title: "Cabbage",
-      gt: "Vegetable",
-      price: "5.50",
-      img: require("../../image/rau2.png"),
-      star: 4.0,
-      kg: 1
-    },
+
     {
       title: "Tomato",
       gt: "Vegetable",
       price: "7.80",
       img: require("../../image/rau3.png"),
       star: 3.8,
-      kg: 1
+      kg: 1,
+      soluong: 1,
     },
     {
       title: "Broccoli",
@@ -87,7 +90,8 @@ export default function Home({ navigation, route }) {
       price: "7.50",
       img: require("../../image/rau4.png"),
       star: 2.5,
-      kg: 1
+      kg: 1,
+      soluong: 1,
     },
   ];
   const DATA2 = [
@@ -99,7 +103,6 @@ export default function Home({ navigation, route }) {
       star: 4.8,
       kg: 1,
       soluong: 1,
-
 
     },
     {
@@ -138,7 +141,8 @@ export default function Home({ navigation, route }) {
       price: "5.80",
       img: require("../../image/rau1.png"),
       star: 4.8,
-      kg: 1
+      kg: 1,
+      soluong: 1,
     },
     {
       title: "Cabbage",
@@ -146,7 +150,8 @@ export default function Home({ navigation, route }) {
       price: "5.50",
       img: require("../../image/rau2.png"),
       star: 4.0,
-      kg: 1
+      kg: 1,
+      soluong: 1,
     },
     {
       title: "Tomato",
@@ -154,7 +159,8 @@ export default function Home({ navigation, route }) {
       price: "7.80",
       img: require("../../image/rau3.png"),
       star: 3.8,
-      kg: 1
+      kg: 1,
+      soluong: 1,
     },
     {
       title: "Broccoli",
@@ -162,33 +168,71 @@ export default function Home({ navigation, route }) {
       price: "7.50",
       img: require("../../image/rau4.png"),
       star: 2.5,
-      kg: 1
+      kg: 1,
+      soluong: 1,
     },
   ];
   useEffect(() => {
     setData11(DATA1)
     if (route.params) {
       if (route.params.data) { setData(route.params.data) }
-      if (route.params.datacart) { setDatagiohang(route.params.datacart)
-      console.log(route.params.datacart); }
+      if (route.params.datacart) {
+        setDatagiohang(route.params.datacart)
+        console.log(route.params.datacart);
+      }
     }
   }, [route.params])
   const luutru = (e) => {
-    const dataTam = [...data]
-    const name = []
-    if (dataTam.length > 0) {
-      dataTam.forEach(element => {
-        name.push(element.title)
-      });
-    }
+    if (localStorage.getItem("cart")) {
+      const dataTam = [...localStorage.getItem("cart")]
+      const name = []
+      if (dataTam.length > 0) {
+        dataTam.forEach(element => {
+          name.push(element.title)
+        });
+      }
 
-    if (name.indexOf(e.title) === -1) {
-      dataTam.push(e)
-      setData(dataTam)
+      if (name.indexOf(e.title) === -1) {
+        dataTam.push(e)
+        localStorage.setItem("cart", dataTam)
+      }
+    }
+    else {
+      const dataTam = []
+      const name = []
+      if (dataTam.length > 0) {
+        dataTam.forEach(element => {
+          name.push(element.title)
+        });
+      }
+
+      if (name.indexOf(e.title) === -1) {
+        dataTam.push(e)
+        localStorage.setItem("cart", dataTam)
+      }
+    }
+  }
+  const detail = (e) => {
+    if (localStorage.getItem("cart")) {
+      const dataTam = [...localStorage.getItem("cart")]
+      const name = []
+      if (dataTam.length > 0) {
+        dataTam.forEach(element => {
+          name.push(element.title)
+          navigation.navigate("Detail")
+        });
+      }
+
+      if (name.indexOf(e.title) === -1) {
+        dataTam.push(e)
+        localStorage.setItem("cart", dataTam)
+      }
     }
   }
   const giohang = (e) => {
-    const dataTam2 = [...datagiohang]
+    if(localStorage.getItem("giohang"))
+    {
+      const dataTam2 = [...localStorage.getItem("giohang")]
 
     const name = []
     if (dataTam2.length > 0) {
@@ -199,7 +243,23 @@ export default function Home({ navigation, route }) {
 
     if (name.indexOf(e.title) === -1) {
       dataTam2.push(e)
-      setDatagiohang(dataTam2)
+      localStorage.setItem("giohang",dataTam2)
+    }
+    }
+    else{
+      const dataTam2 = []
+
+    const name = []
+    if (dataTam2.length > 0) {
+      dataTam2.forEach(element => {
+        name.push(element.title)
+      });
+    }
+
+    if (name.indexOf(e.title) === -1) {
+      dataTam2.push(e)
+      localStorage.setItem("giohang",dataTam2)
+    }
     }
   }
   const Item = ({ item, click, onPress, backgroundColor, textColor, index }) => (
@@ -359,7 +419,7 @@ export default function Home({ navigation, route }) {
             <TouchableOpacity onPress={() => navigation.navigate("Cart", { datagiohang })}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohang.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail",{datagiohang})}>
+            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail", { datagiohang })}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/iconchuong.png")}></Image>
             </TouchableOpacity>
           </View>

@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
 import React, { Component, useState } from 'react';
+import localStorage from 'react-native-sync-localstorage'
 export default function Profail({ navigation }) {
     return (
         <View style={styles.container}>
@@ -25,7 +26,7 @@ export default function Profail({ navigation }) {
                 </View>
             </View>
             <View style={{ marginTop: 20, alignItems: 'center' }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Hoàng Tiến Mạnh Đức</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{localStorage.getItem("user").email}</Text>
             </View>
             <View style={{ alignItems: 'center' }}>
                 <ImageBackground style={{ width: 350, height: 80, justifyContent: "center", marginTop: 20 }} source={require("../../image/border_profile.png")}>

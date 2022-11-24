@@ -8,10 +8,26 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { auth } from "../../firebase";
 
 export default function Register({ navigation }) {
     const [visible, setVisible] = useState(true);
     const [visiblepass, setVisiblePass] = useState(true);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cfpassword, setCfpassword] = useState('');
+
+    const handleSignUp = () => {
+        auth
+        .createUserWithEmailAndPassword(email,password)
+        .then(userCredential => {
+            const user = userCredential.user;
+            console.log(user.email);
+        })
+        .catch(error => alert(error.message))
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: "#F5F5F5" }}>
             <View
@@ -70,8 +86,9 @@ export default function Register({ navigation }) {
                             paddingRight: 30,
                             fontSize:15
                         }}
+                        value={name}
+                        onChangeText={text => setName(text)}
                     >
-                        <Text></Text>
                     </TextInput>
                 </View>
                 <Text
@@ -102,8 +119,9 @@ export default function Register({ navigation }) {
                             paddingRight: 30,
                             fontSize:15
                         }}
+                        value={email}
+                        onChangeText={text => setEmail(text)}
                     >
-                        <Text></Text>
                     </TextInput>
                 </View>
                 <Text
@@ -135,8 +153,9 @@ export default function Register({ navigation }) {
                             paddingRight: 10,
                             fontSize:15
                         }}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
                     >
-                        <Text></Text>
                     </TextInput>
                     <TouchableOpacity
                         onPress={() => {
@@ -168,6 +187,8 @@ export default function Register({ navigation }) {
                         alignItems: "center",
                         marginTop: 5,
                     }}
+                    value={cfpassword}
+                    onChangeText={text => setCfpassword(text)}
                 >
                     <Image
                         style={{ marginLeft: 10, height: 23, width: 15 }}
@@ -184,7 +205,6 @@ export default function Register({ navigation }) {
                             fontSize:15
                         }}
                     >
-                        <Text></Text>
                     </TextInput>
                     <TouchableOpacity
                         onPress={() => {
@@ -215,7 +235,7 @@ export default function Register({ navigation }) {
                         marginTop:35
                     }}
                     onPress={() => {
-                        navigation.navigate("slideshow");
+                        navigation.navigate("Login",{handleSignUp});
                     }}
                 >
                     <Text

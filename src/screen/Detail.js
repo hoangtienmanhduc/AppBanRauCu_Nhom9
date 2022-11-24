@@ -1,25 +1,74 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import localStorage from 'react-native-sync-localstorage'
 
 export default function Detail({ navigation, route }) {
     const item = route.params.item
     const [count, setcount] = useState(1)
+    const addtocart = () => {
+        if (localStorage.getItem("giohang")) {
+            const dataTam = [...localStorage.getItem("giohang")]
+            const name = []
+            if (dataTam.length > 0) {
+                dataTam.forEach(element => {
+                    name.push(element.title)
+                });
+            }
+            //tim
+            if (name.indexOf(item.title) !== -1) {
+
+                dataTam[name.indexOf(item.title)].soluong = dataTam[name.indexOf(item.title)].soluong + count
+                localStorage.setItem("giohang", dataTam)
+                navigation.navigate("Cart")
+            }
+            else {
+                item.soluong= count
+                dataTam.push(item)
+              
+                localStorage.setItem("giohang", dataTam)
+                navigation.navigate("Cart")
+            }
+        }
+        else {
+            const dataTam = []
+            const name = []
+            if (dataTam.length > 0) {
+                dataTam.forEach(element => {
+                    name.push(element.title)
+                });
+            }
+
+            if (name.indexOf(item.title) !== -1) {
+
+                dataTam[name.indexOf(item.title)].soluong = dataTam[name.indexOf(item.title)].soluong + count
+                localStorage.setItem("giohang", dataTam)
+                navigation.navigate("Cart")
+            }
+            else {
+                item.soluong = count
+                dataTam.push(item)
+                localStorage.setItem("giohang", dataTam)
+                navigation.navigate("Cart")
+            }
+
+        }
+    }
     return (
         <View style={styles.container}>
             <View style={{ width: "100%", height: "100%" }}>
                 <View style={{ flex: 0.6 }}>
                     <ImageBackground style={{ width: "100%", height: "100%" }} source={require("../../image/backgroundstart.png")}>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 25 }}>
-                            <TouchableOpacity style={{ marginLeft: 25 }}  onPress={() => { navigation.navigate('Home') }}>
+                            <TouchableOpacity style={{ marginLeft: 25 }} onPress={() => { navigation.navigate('Home') }}>
                                 <ImageBackground style={{ width: 45, height: 45, alignItems: "center", justifyContent: "center" }} source={require("../../image/icon1.png")}>
                                     <Image style={{ width: 12, height: 22 }} source={require("../../image/btnback.png")}></Image>
                                 </ImageBackground>
                             </TouchableOpacity>
                             <Text style={{ fontSize: 28, fontWeight: "bold", marginRight: 150 }}>Details</Text>
                         </View>
-                        <View style={{alignItems:'center',marginTop:25}}>
-                            <Image style={{ width: 340, height: 300, resizeMode: 'contain'}} source={item.img}></Image>
+                        <View style={{ alignItems: 'center', marginTop: 25 }}>
+                            <Image style={{ width: 340, height: 300, resizeMode: 'contain' }} source={item.img}></Image>
                         </View>
                     </ImageBackground>
                 </View>
@@ -109,7 +158,7 @@ export default function Detail({ navigation, route }) {
 
                     </View>
                     <View style={{ flex: 0.22, width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
-                        <TouchableOpacity onPress={() => { navigation.navigate('Cart') }} style={{ width: "60%", height: "75%", backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
+                        <TouchableOpacity onPress={() => { addtocart() }} style={{ width: "60%", height: "75%", backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
                             <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>Add To Cart</Text>
                         </TouchableOpacity>
                     </View>

@@ -8,9 +8,26 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-
+import { auth } from "../../firebase";
+import localStorage from 'react-native-sync-localstorage'
 export default function Login({ navigation }) {
     const [visiblepass, setVisiblePass] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        auth
+        .signInWithEmailAndPassword(email,password)
+        .then(userCredential => {
+            const user = userCredential.user;
+            const value = 12345
+            localStorage.setItem('user', {email:user.email})
+            
+            navigation.navigate("Home")
+        })
+        .catch(error => alert(error.message))
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: "#F5F5F5" }}>
             <View
@@ -62,6 +79,8 @@ export default function Login({ navigation }) {
                             marginLeft: 10,
                             fontSize:15
                         }}
+                        value={email}
+                        onChangeText={text => setEmail(text)}
                     >
                     </TextInput>
                 </View>
@@ -95,6 +114,8 @@ export default function Login({ navigation }) {
                             paddingRight: 10,
                             fontSize:15
                         }}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
                     >
                     </TextInput>
                     <TouchableOpacity
@@ -125,7 +146,7 @@ export default function Login({ navigation }) {
                         alignItems: "center",
                         marginTop: 30,
                     }}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={handleLogin}
                 >
                     <Text
                         style={{

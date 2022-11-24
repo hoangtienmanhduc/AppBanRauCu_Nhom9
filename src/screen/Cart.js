@@ -1,18 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
 import React, { Component, useEffect, useState } from 'react';
+import localStorage from 'react-native-sync-localstorage'
 export default function Cart({ navigation, route }) {
     const [datacart, setData] = useState([])
     const [sum, setSum] = useState(0)
     useEffect(() => {
         var sumTam2 = 0
-        setData(route.params.datagiohang)
-        route.params.datagiohang.forEach(element => {
-            sumTam2+=element.price*element.soluong
-        });
+        if(localStorage.getItem("giohang"))
+        {
+            setData(localStorage.getItem("giohang"))
+            localStorage.getItem("giohang").forEach(element => {
+                sumTam2+=element.price*element.soluong
+            });
+        }
+        
         setSum(sumTam2)
     }, [])
-
+    const checkout = () =>{
+        if(localStorage.getItem('order'))
+        {
+            const order =[...localStorage.getItem('order')]
+            datacart.forEach(element => {
+                order.push(element)
+            });
+            localStorage.setItem("order",order)
+            
+            localStorage.setItem("giohang",[])
+            navigation.navigate("Home",{datacart:[]})
+        }
+        else{
+            const order =[]
+            datacart.forEach(element => {
+                order.push(element)
+            });
+            localStorage.setItem("order",order)
+    
+           localStorage.setItem("giohang",[])
+            navigation.navigate("Home",{datacart:[]})
+        }
+        
+    }
     const cong = (item) => {
         const dataTam2 = [...datacart]
         console.log(dataTam2);
@@ -58,6 +86,7 @@ export default function Cart({ navigation, route }) {
             dataTam2.splice(name.indexOf(item.title), 1)
             setSum(sum-parseInt(item.price))
             setData(dataTam2)
+            localStorage.setItem("giohang",dataTam2)
         }
     }
     const Item1 = ({ item, click, onPress, backgroundColor, textColor, index }) => (
@@ -125,7 +154,7 @@ export default function Cart({ navigation, route }) {
                     </View>
                     <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#AAA8A8' }}>Delevery fee</Text>
-                        <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$5.00</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$1.00</Text>
                     </View>
                     <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#AAA8A8' }}>Discount</Text>
@@ -136,12 +165,12 @@ export default function Cart({ navigation, route }) {
                     </View>
                     <View style={{ marginLeft: 20, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Total</Text>
-                        {datacart.length > 0 ? (<Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>${((sum+5.00)*0.9).toFixed(2)}</Text>):(<Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$0</Text>)}
+                        {datacart.length > 0 ? (<Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>${((sum+1.00)*0.9).toFixed(2)}</Text>):(<Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>$0</Text>)}
                     </View>
                 </ImageBackground>
             </View>
             <View style={{ justifyContent: "center", alignItems: "center", marginTop: 20 }}>
-                <TouchableOpacity onPress={() => { navigation.navigate('Home',{datacart}) }} style={{ width: 250, height: 50, backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
+                <TouchableOpacity onPress={() => { checkout() }} style={{ width: 250, height: 50, backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>Checkout</Text>
                 </TouchableOpacity>
             </View>

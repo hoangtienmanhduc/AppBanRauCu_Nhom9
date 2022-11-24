@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
 import React, { Component, useEffect, useState } from 'react';
+import localStorage from 'react-native-sync-localstorage'
 export default function Favourite({ navigation,route }) {
   const [click, setcick] = useState()
   const [data, setData] = useState([])
+  const [datagiohang, setDatagiohang] = useState([])
   useEffect(() => {
-    setData(route.params.data)
+    if(localStorage.getItem("cart"))
+    {
+      setData(localStorage.getItem("cart"))
+    }
   },[])
   const xoa = (e) => {
     const dataTam2 = [...data]
@@ -105,10 +110,10 @@ export default function Favourite({ navigation,route }) {
             <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
               <Image style={{ width: 17, height: 28 }} source={require("../../image/btn2.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Cart",{datagiohang})}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohang.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail")}>
+            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail",{datagiohang})}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/iconchuong.png")}></Image>
             </TouchableOpacity>
           </View>

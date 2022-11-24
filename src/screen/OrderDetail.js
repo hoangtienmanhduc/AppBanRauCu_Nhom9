@@ -1,15 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
 import React, { Component, useEffect, useState } from 'react';
-export default function OrderDetail({ navigation,route }) {
+import localStorage from 'react-native-sync-localstorage'
+export default function OrderDetail({ navigation, route }) {
     const [dataorderdetail, setDataorderdetail] = useState([])
+    const [data, setData] = useState([])
     const [sum, setSum] = useState(0)
     useEffect(() => {
         var sumTam2 = 0
-        setDataorderdetail(route.params.datagiohang)
-        route.params.datagiohang.forEach(element => {
-            sumTam2+=element.price*element.soluong
-        });
+        if (localStorage.getItem("order")) {
+            setDataorderdetail(localStorage.getItem("order"))
+            localStorage.getItem("order").forEach(element => {
+                sumTam2 += element.price * element.soluong
+            });
+        }
         setSum(sumTam2)
     }, [])
 
@@ -94,7 +98,7 @@ export default function OrderDetail({ navigation,route }) {
             </View>
             <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
                 <Text style={{ fontWeight: 'bold' }}>Delivery fee</Text>
-                <Text style={{ fontWeight: 'bold' }}>$5.00</Text>
+                <Text style={{ fontWeight: 'bold' }}>$1.00</Text>
             </View>
             <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
                 <Text style={{ fontWeight: 'bold' }}>Discount</Text>
@@ -102,14 +106,14 @@ export default function OrderDetail({ navigation,route }) {
             </View>
             <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
                 <Text style={{ fontWeight: 'bold' }}>Total</Text>
-                {dataorderdetail.length > 0 ? (<Text style={{ fontWeight: 'bold'}}>${((sum+5.00)*0.9).toFixed(2)}</Text>):(<Text style={{ fontWeight: 'bold'}}>$0</Text>)}
+                {dataorderdetail.length > 0 ? (<Text style={{ fontWeight: 'bold' }}>${((sum + 5.00) * 0.9).toFixed(2)}</Text>) : (<Text style={{ fontWeight: 'bold' }}>$0</Text>)}
             </View>
             <View style={{ width: 400, height: 60, justifyContent: "flex-end" }}>
                 <View style={{ width: "100%", height: "90%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
                     <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                         <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("Favourite")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Favourite", { data: dataorderdetail })}>
                         <Image style={{ width: 17, height: 28 }} source={require("../../image/btn3.png")}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
