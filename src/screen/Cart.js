@@ -141,7 +141,7 @@ export default function Cart({ navigation, route }) {
                 </ImageBackground>
             </View>
             <View style={{ justifyContent: "center", alignItems: "center", marginTop: 20 }}>
-                <TouchableOpacity onPress={() => { navigation.navigate('Home') }} style={{ width: 250, height: 50, backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
+                <TouchableOpacity onPress={() => { navigation.navigate('Home',{datacart}) }} style={{ width: 250, height: 50, backgroundColor: "#E12020", borderRadius: 15, justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>Checkout</Text>
                 </TouchableOpacity>
             </View>

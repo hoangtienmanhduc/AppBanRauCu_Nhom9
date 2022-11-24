@@ -169,7 +169,8 @@ export default function Home({ navigation, route }) {
     setData11(DATA1)
     if (route.params) {
       if (route.params.data) { setData(route.params.data) }
-      if (route.params.datacart) { setDatagiohang(route.params.datacart) }
+      if (route.params.datacart) { setDatagiohang(route.params.datacart)
+      console.log(route.params.datacart); }
     }
   }, [route.params])
   const luutru = (e) => {
@@ -358,7 +359,7 @@ export default function Home({ navigation, route }) {
             <TouchableOpacity onPress={() => navigation.navigate("Cart", { datagiohang })}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohang.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail")}>
+            <TouchableOpacity onPress={() => navigation.navigate("OrderDetail",{datagiohang})}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/iconchuong.png")}></Image>
             </TouchableOpacity>
           </View>

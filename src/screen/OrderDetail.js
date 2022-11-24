@@ -3,35 +3,15 @@ import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpac
 import React, { Component, useEffect, useState } from 'react';
 export default function OrderDetail({ navigation,route }) {
     const [dataorderdetail, setDataorderdetail] = useState([])
-   
-    const DATA1 = [
-        {
-            title: "Strawbery",
-            kg: "3",
-            price: "4.53",
-            img: require("../../image/qua1.png")
-
-        },
-        {
-            title: "Mango",
-            kg: "2",
-            price: "3.9",
-            img: require("../../image/qua2.png")
-
-        },
-        {
-            title: "Graperfruit",
-            kg: "4",
-            price: "4.53",
-            img: require("../../image/qua3.png")
-        },
-        {
-            title: "Pomegranate",
-            kg: "3",
-            price: "4.53",
-            img: require("../../image/qua4.png")
-        },
-    ];
+    const [sum, setSum] = useState(0)
+    useEffect(() => {
+        var sumTam2 = 0
+        setDataorderdetail(route.params.datagiohang)
+        route.params.datagiohang.forEach(element => {
+            sumTam2+=element.price*element.soluong
+        });
+        setSum(sumTam2)
+    }, [])
 
     const Item1 = ({ item, click, onPress, backgroundColor, textColor, index }) => (
         <View>
@@ -50,7 +30,7 @@ export default function OrderDetail({ navigation,route }) {
                     <TouchableOpacity>
                         <Image style={{ width: 17, height: 17, resizeMode: 'contain' }} source={require("../../image/btncong.png")}></Image>
                     </TouchableOpacity>
-                    <Text style={{ fontWeight: 'bold', fontSize: 17 }}>3</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 17 }}>{item.soluong}</Text>
                     <TouchableOpacity>
                         <Image style={{ width: 17, height: 3, justifyContent: "center", alignItems: "center" }} source={require("../../image/icontru.png")}></Image>
                     </TouchableOpacity>
@@ -98,7 +78,7 @@ export default function OrderDetail({ navigation,route }) {
             <View style={{ width: 400, height: 175, justifyContent: "center", alignItems: "center", marginTop: 10 }}>
                 <View style={{ width: "100%", height: "100%" }}>
                     <FlatList
-                        data={DATA1}
+                        data={dataorderdetail}
                         renderItem={renderItem1}
                     />
                 </View>
@@ -110,7 +90,7 @@ export default function OrderDetail({ navigation,route }) {
 
             <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
                 <Text style={{ fontWeight: 'bold' }}>Subtotal</Text>
-                <Text style={{ fontWeight: 'bold' }}>$30.50</Text>
+                <Text style={{ fontWeight: 'bold' }}>${sum.toFixed(2)}</Text>
             </View>
             <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
                 <Text style={{ fontWeight: 'bold' }}>Delivery fee</Text>
@@ -122,7 +102,7 @@ export default function OrderDetail({ navigation,route }) {
             </View>
             <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
                 <Text style={{ fontWeight: 'bold' }}>Total</Text>
-                <Text style={{ fontWeight: 'bold' }}>$30.50</Text>
+                {dataorderdetail.length > 0 ? (<Text style={{ fontWeight: 'bold'}}>${((sum+5.00)*0.9).toFixed(2)}</Text>):(<Text style={{ fontWeight: 'bold'}}>$0</Text>)}
             </View>
             <View style={{ width: 400, height: 60, justifyContent: "flex-end" }}>
                 <View style={{ width: "100%", height: "90%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
