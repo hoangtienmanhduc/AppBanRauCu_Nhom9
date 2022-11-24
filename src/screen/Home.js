@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, FlatList, Dimensions, ImageBackground, Image, T
 import React, { Component, useEffect, useState } from 'react';
 import ViewSlider from 'react-native-view-slider'
 const { width, height } = Dimensions.get('window');
-export default function Home({ navigation,route }) {
+export default function Home({ navigation, route }) {
   const [click, setcick] = useState()
   const [data, setData] = useState([])
   const [datagiohang, setDatagiohang] = useState([])
   const [data11, setData11] = useState([])
-  
+
   const DATA = [
     {
       title: "Fruits",
@@ -24,124 +24,154 @@ export default function Home({ navigation,route }) {
       price: "4.00",
       img: require("../../image/qua1.png"),
       star: 4.8,
-      kg:1,
-      soluong:2,
-      
+      kg: 1,
+      soluong: 1,
+
 
     },
     {
       title: "Mango",
       gt: "Fresh Fruits",
-      price: "3.0",
+      price: "3.50",
       img: require("../../image/qua2.png"),
       star: 4.0,
-      kg:1,
-      soluong:2,
+      kg: 1,
+      soluong: 1,
 
     },
     {
       title: "Graperfruit",
       gt: "Fresh Fruits",
-      price: "4.53",
+      price: "4.50",
       img: require("../../image/qua3.png"),
       star: 3.8,
-      kg:1,
-      soluong:2,
+      kg: 1,
+      soluong: 1,
     },
     {
       title: "Pomegranate",
       gt: "Fresh Fruits",
-      price: "4.53",
+      price: "5.80",
       img: require("../../image/qua4.png"),
       star: 2.5,
-      kg:1,
-      soluong:2,
-
+      kg: 1,
+      soluong: 1,
+    },
+    {
+      title: "Carrot",
+      gt: "Vegetable",
+      price: "5.80",
+      img: require("../../image/rau1.png"),
+      star: 4.8,
+      kg: 1
+    },
+    {
+      title: "Cabbage",
+      gt: "Vegetable",
+      price: "5.50",
+      img: require("../../image/rau2.png"),
+      star: 4.0,
+      kg: 1
+    },
+    {
+      title: "Tomato",
+      gt: "Vegetable",
+      price: "7.80",
+      img: require("../../image/rau3.png"),
+      star: 3.8,
+      kg: 1
+    },
+    {
+      title: "Broccoli",
+      gt: "Vegetable",
+      price: "7.50",
+      img: require("../../image/rau4.png"),
+      star: 2.5,
+      kg: 1
     },
   ];
   const DATA2 = [
     {
-      title: "Duc",
+      title: "Strawbery",
       gt: "Fresh Fruits",
-      price: "4.53",
+      price: "4.00",
       img: require("../../image/qua1.png"),
       star: 4.8,
-      kg:1
+      kg: 1,
+      soluong: 1,
+
 
     },
     {
-      title: "Duc",
+      title: "Mango",
       gt: "Fresh Fruits",
-      price: "3.9",
+      price: "3.50",
       img: require("../../image/qua2.png"),
       star: 4.0,
-      kg:1
+      kg: 1,
+      soluong: 1,
 
     },
     {
-      title: "Duc",
+      title: "Graperfruit",
       gt: "Fresh Fruits",
-      price: "4.53",
+      price: "4.50",
       img: require("../../image/qua3.png"),
       star: 3.8,
-      kg:1
+      kg: 1,
+      soluong: 1,
     },
     {
-      title: "Duc",
+      title: "Pomegranate",
       gt: "Fresh Fruits",
-      price: "4.53",
+      price: "5.80",
       img: require("../../image/qua4.png"),
       star: 2.5,
-      kg:1
-
+      kg: 1,
+      soluong: 1,
     },
   ];
   const DATA3 = [
     {
-      title: "Thang",
-      gt: "Fresh Fruits",
-      price: "4.53",
-      img: require("../../image/qua1.png"),
+      title: "Carrot",
+      gt: "Vegetable",
+      price: "5.80",
+      img: require("../../image/rau1.png"),
       star: 4.8,
-      kg:1
-
+      kg: 1
     },
     {
-      title: "Thang",
-      gt: "Fresh Fruits",
-      price: "3.9",
-      img: require("../../image/qua2.png"),
+      title: "Cabbage",
+      gt: "Vegetable",
+      price: "5.50",
+      img: require("../../image/rau2.png"),
       star: 4.0,
-      kg:1
-
+      kg: 1
     },
     {
-      title: "Thang",
-      gt: "Fresh Fruits",
-      price: "4.53",
-      img: require("../../image/qua3.png"),
+      title: "Tomato",
+      gt: "Vegetable",
+      price: "7.80",
+      img: require("../../image/rau3.png"),
       star: 3.8,
-      kg:1
+      kg: 1
     },
     {
-      title: "Thang",
-      gt: "Fresh Fruits",
-      price: "4.53",
-      img: require("../../image/qua4.png"),
+      title: "Broccoli",
+      gt: "Vegetable",
+      price: "7.50",
+      img: require("../../image/rau4.png"),
       star: 2.5,
-      kg:1
-
+      kg: 1
     },
   ];
-  useEffect(()=>{
+  useEffect(() => {
     setData11(DATA1)
-    if(route.params){
-      if(route.params.data)
-      {setData(route.params.data)}
-      if(route.params.datacart)
-      {setDatagiohang(route.params.datacart)}
+    if (route.params) {
+      if (route.params.data) { setData(route.params.data) }
+      if (route.params.datacart) { setDatagiohang(route.params.datacart) }
     }
-  },[route.params])
+  }, [route.params])
   const luutru = (e) => {
     const dataTam = [...data]
     const name = []
@@ -158,7 +188,7 @@ export default function Home({ navigation,route }) {
   }
   const giohang = (e) => {
     const dataTam2 = [...datagiohang]
-    
+
     const name = []
     if (dataTam2.length > 0) {
       dataTam2.forEach(element => {
@@ -195,10 +225,10 @@ export default function Home({ navigation,route }) {
         click={click}
         onPress={() => {
           setcick(DATA.indexOf(item))
-          if(item.title==="Fruits"){
+          if (item.title === "Fruits") {
             setData11(DATA2)
           }
-          else{
+          else {
             setData11(DATA3)
           }
         }
@@ -269,22 +299,22 @@ export default function Home({ navigation,route }) {
           </View>
         </View>
         <View style={{ flex: 0.34, height: "50%", width: "100%", justifyContent: "space-between" }}>
-          {/* <View>
+          <View>
             <>
               <ViewSlider
                 renderSlides={
                   <>
                     <View style={styles.viewBox}>
-                      <Image source={{ uri: 'https://t3.ftcdn.net/jpg/01/63/13/30/360_F_163133061_TlMOMqgxAvBuwzLAjxOQ8v1FQ3OexfRG.jpg' }} style={{ height: 265, width }} />
+                      <Image source={{ uri: 'https://t3.ftcdn.net/jpg/01/63/13/30/360_F_163133061_TlMOMqgxAvBuwzLAjxOQ8v1FQ3OexfRG.jpg' }} style={{ height: 220, width }} />
                     </View>
                     <View style={styles.viewBox}>
-                      <Image source={{ uri: 'https://img.freepik.com/psd-premium/modelo-de-banner-de-vegetais-frescos_88281-5245.jpg' }} style={{ height: 265, width }} />
+                      <Image source={{ uri: 'https://img.freepik.com/psd-premium/modelo-de-banner-de-vegetais-frescos_88281-5245.jpg' }} style={{ height: 220, width }} />
                     </View>
                     <View style={styles.viewBox}>
-                      <Image source={{ uri: 'https://foodrevolution.org/wp-content/uploads/iStock-1070165924-1.jpg' }} style={{ height: 265, width }} />
+                      <Image source={{ uri: 'https://foodrevolution.org/wp-content/uploads/iStock-1070165924-1.jpg' }} style={{ height: 220, width }} />
                     </View>
                     <View style={styles.viewBox}>
-                      <Image source={{ uri: 'https://thuonghieuvietnoitieng.com//image/admin/a4403756c350a658612a29db99a7e1142cafb645/b4/hq/bang-cach-chon-trai-cay-tuoi-ngon-cho-ngay-tet-gia-dinh-ban-se-luon-co-hoa-qua-tuoi-trong-dip-tet-sap-toi.jpg' }} style={{ height: 265, width }} />
+                      <Image source={{ uri: 'https://thuonghieuvietnoitieng.com//image/admin/a4403756c350a658612a29db99a7e1142cafb645/b4/hq/bang-cach-chon-trai-cay-tuoi-ngon-cho-ngay-tet-gia-dinh-ban-se-luon-co-hoa-qua-tuoi-trong-dip-tet-sap-toi.jpg' }} style={{ height: 220, width }} />
                     </View>
                   </>
                 }
@@ -299,7 +329,7 @@ export default function Home({ navigation,route }) {
                 slideInterval={5000}    //In Miliseconds
               />
             </>
-          </View> */}
+          </View>
           <View style={{ alignItems: 'center' }}>
             <FlatList
               data={DATA}
@@ -322,10 +352,10 @@ export default function Home({ navigation,route }) {
             <TouchableOpacity>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/iconhome.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {const dataTam1=[...data];setData([]);navigation.navigate("Favourite", { data:dataTam1 })}}>
+            <TouchableOpacity onPress={() => { const dataTam1 = [...data]; setData([]); navigation.navigate("Favourite", { data: dataTam1 }) }}>
               <Image style={{ width: 17, height: 28 }} source={require("../../image/btn3.png")}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Cart",{datagiohang})}>
+            <TouchableOpacity onPress={() => navigation.navigate("Cart", { datagiohang })}>
               <Image style={{ width: 30, height: 30 }} source={require("../../image/icongiohang.png")}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("OrderDetail")}>
@@ -351,14 +381,14 @@ const styles = StyleSheet.create({
     width: width,
     padding: 10,
     alignItems: 'center',
-    height: 140,
+    height: 130,
 
   },
   slider: {
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'pink'
+    backgroundColor: 'white'
   },
   dotContainer: {
     backgroundColor: 'transparent',

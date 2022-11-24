@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
-import React, { Component, useState } from 'react';
-export default function OrderDetail({ navigation }) {
+import React, { Component, useEffect, useState } from 'react';
+export default function OrderDetail({ navigation,route }) {
+    const [dataorderdetail, setDataorderdetail] = useState([])
+   
     const DATA1 = [
         {
             title: "Strawbery",
@@ -77,21 +79,21 @@ export default function OrderDetail({ navigation }) {
             <View style={{ alignItems: 'center' }}>
                 <Image style={{ width: 350, height: 145, marginTop: 15 }} source={require("../../image/bando.png")}></Image>
             </View>
-            <View style={{marginLeft:25,marginTop:15,flexDirection:'row',alignItems:'center'}}>
-                <Text style={{fontWeight:'bold'}}>Order Id #89087678</Text>
+            <View style={{ marginLeft: 25, marginTop: 15, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ fontWeight: 'bold' }}>Order Id #89087678</Text>
                 <Image style={{ width: 20, height: 20, marginLeft: 130 }} source={require("../../image/delivery.png")}></Image>
-                <Text style={{fontWeight:'bold',marginLeft:10}}>Delivered</Text>
+                <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Delivered</Text>
             </View>
-            <Text style={{fontWeight:'bold',marginLeft:25}}>Yesterday, 8:50 AM</Text>
+            <Text style={{ fontWeight: 'bold', marginLeft: 25 }}>Yesterday, 8:50 AM</Text>
 
-            <Text style={{marginLeft:25,marginTop:10,color:'#AAA8A8'}}>Delivered to</Text>
-            <Text style={{fontWeight:'bold',marginLeft:25}}>Thống nhất, phường 15, Gò Vấp, TP HCM</Text>
+            <Text style={{ marginLeft: 25, marginTop: 10, color: '#AAA8A8' }}>Delivered to</Text>
+            <Text style={{ fontWeight: 'bold', marginLeft: 25 }}>Thống nhất, phường 15, Gò Vấp, TP HCM</Text>
 
-            <Text style={{marginLeft:25,marginTop:10,color:'#AAA8A8'}}>Paymen method</Text>
-            <Text style={{fontWeight:'bold',marginLeft:25}}>xxxx-5321-5132 VISA</Text>
+            <Text style={{ marginLeft: 25, marginTop: 10, color: '#AAA8A8' }}>Paymen method</Text>
+            <Text style={{ fontWeight: 'bold', marginLeft: 25 }}>xxxx-5321-5132 VISA</Text>
 
             <View>
-                <Text style={{marginLeft:25}}>--------------------------------------------------------------------------------------</Text>
+                <Text style={{ marginLeft: 25 }}>--------------------------------------------------------------------------------------</Text>
             </View>
             <View style={{ width: 400, height: 175, justifyContent: "center", alignItems: "center", marginTop: 10 }}>
                 <View style={{ width: "100%", height: "100%" }}>
@@ -103,26 +105,26 @@ export default function OrderDetail({ navigation }) {
             </View>
 
             <View>
-                <Text style={{marginLeft:25}}>--------------------------------------------------------------------------------------</Text>
+                <Text style={{ marginLeft: 25 }}>--------------------------------------------------------------------------------------</Text>
             </View>
 
-            <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
-                <Text style={{fontWeight:'bold'}}>Subtotal</Text>
-                <Text style={{fontWeight:'bold'}}>$30.50</Text>
+            <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
+                <Text style={{ fontWeight: 'bold' }}>Subtotal</Text>
+                <Text style={{ fontWeight: 'bold' }}>$30.50</Text>
             </View>
-            <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
-                <Text style={{fontWeight:'bold'}}>Delivery fee</Text>
-                <Text style={{fontWeight:'bold'}}>$5.00</Text>
+            <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
+                <Text style={{ fontWeight: 'bold' }}>Delivery fee</Text>
+                <Text style={{ fontWeight: 'bold' }}>$5.00</Text>
             </View>
-            <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
-                <Text style={{fontWeight:'bold'}}>Discount</Text>
-                <Text style={{fontWeight:'bold'}}>10%</Text>
+            <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
+                <Text style={{ fontWeight: 'bold' }}>Discount</Text>
+                <Text style={{ fontWeight: 'bold' }}>10%</Text>
             </View>
-            <View style={{marginLeft:25,marginTop:5,flexDirection:'row',justifyContent:'space-between',marginRight:25}}>
-                <Text style={{fontWeight:'bold'}}>Total</Text>
-                <Text style={{fontWeight:'bold'}}>$30.50</Text>
+            <View style={{ marginLeft: 25, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', marginRight: 25 }}>
+                <Text style={{ fontWeight: 'bold' }}>Total</Text>
+                <Text style={{ fontWeight: 'bold' }}>$30.50</Text>
             </View>
-            <View style={{ width: 400, height: 60, justifyContent: "flex-end"}}>
+            <View style={{ width: 400, height: 60, justifyContent: "flex-end" }}>
                 <View style={{ width: "100%", height: "90%", backgroundColor: "#EAB1B1", alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 15, borderTopLeftRadius: 25, borderTopRightRadius: 25 }}>
                     <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                         <Image style={{ width: 30, height: 30 }} source={require("../../image/btn4.png")}></Image>
